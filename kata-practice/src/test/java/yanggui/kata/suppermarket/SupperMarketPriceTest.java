@@ -22,7 +22,7 @@ public class SupperMarketPriceTest {
 
 	@Test
 	public void threeForDollar() {
-		String priceStrategy = "THREE_FOR_DOLLAR";
+		
 		Product product = new Product();
 		product.setSkuid("123456");
 		product.setCurrency(Currency.getInstance(Locale.CHINA));
@@ -30,10 +30,10 @@ public class SupperMarketPriceTest {
 		product.setUnit("piece");
 		Order order = new Order();
 		order.setProduct(product);
-		order.setPriceStrategy(priceStrategy);
+		order.setPriceStrategy(PriceStrategyService.THREE_FOR_DOLLAR);
 		order.setQuantity(new BigDecimal(3));
 		order.setUnit("piece");
-		assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+		assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
 	}
 	@Test
 	public void noDiscountOrder() {
@@ -44,12 +44,12 @@ public class SupperMarketPriceTest {
 		Order order = new Order();
 		order.setProduct(product);
 		order.setQuantity(new BigDecimal(3));
-		assertEquals(new BigDecimal("1.20").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+		assertEquals(new BigDecimal("1.20").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
 	}
 	@Test
 	public void nullProduct() {
 		Order order = new Order();
-		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
 	}
 	@Test
 	public void nullSku() {
@@ -65,7 +65,7 @@ public class SupperMarketPriceTest {
 		order.setPriceStrategy(priceStrategy);
 		order.setQuantity(new BigDecimal(3));
 		order.setUnit("piece");
-		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
 	}
 	
 	@Test
@@ -79,7 +79,21 @@ public class SupperMarketPriceTest {
 		order.setProduct(product);
 		order.setQuantity(new BigDecimal(4));
 		order.setUnit("oz");
-		assertEquals(new BigDecimal("0.50").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+		assertEquals(new BigDecimal("0.50").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
+	}
+	@Test
+	public void buy2Give1Calulate() {
+		Product product = new Product();
+		product.setSkuid("123456");
+		product.setCurrency(Currency.getInstance(Locale.CHINA));
+		product.setPrice(new BigDecimal("2.00"));
+		product.setUnit("lb");
+		Order order = new Order();
+		order.setProduct(product);
+		order.setQuantity(new BigDecimal(3));
+		order.setUnit("lb");
+		order.setPriceStrategy(PriceStrategyService.BUY_2_GIVEN_1);
+		assertEquals(new BigDecimal("4.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPriceCalculator.calculatePrice(order));
 	}
 
 }

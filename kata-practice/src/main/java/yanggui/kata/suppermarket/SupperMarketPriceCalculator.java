@@ -2,7 +2,7 @@ package yanggui.kata.suppermarket;
 
 import java.math.BigDecimal;
 
-public class SupperMarketPrice {
+public class SupperMarketPriceCalculator {
 
 	public static BigDecimal calculatePrice(Order order){
 		if(order.getProduct()!=null && order.getQuantity() !=null ){
@@ -50,7 +50,7 @@ public class SupperMarketPrice {
 				BigDecimal[] divideAndRemainder = totalProductNumber.divideAndRemainder(new BigDecimal(priceStrategyObject.getDefaultQuantity()));
 				BigDecimal strategyPriceQuantity=divideAndRemainder[0];
 				BigDecimal normalPriceQuantity=divideAndRemainder[1];
-				BigDecimal strategyTotalPrice = priceStrategyObject.getDefaultPrice().multiply(strategyPriceQuantity);
+				BigDecimal strategyTotalPrice = priceStrategyObject.getStategyPrice(product).multiply(strategyPriceQuantity);
 				BigDecimal leftProductTotalPrice = calculateNormalPrice(product, normalPriceQuantity);
 				totalPrice = strategyTotalPrice.add(leftProductTotalPrice);
 			}
@@ -60,11 +60,9 @@ public class SupperMarketPrice {
 
 	private static PriceStrategy getPriceStrategy(String priceStrategy) {
 
-		PriceStrategy priceStrategyObject = new PriceStrategy();
-		priceStrategyObject.setStrategyName(priceStrategyObject.THREE_FOR_DOLLAR);
-		priceStrategyObject.setDefaultPrice(new BigDecimal("1"));
-		priceStrategyObject.setDefaultQuantity(3);
-		return priceStrategyObject;
+		PriceStrategy strategy = PriceStrategyService.getInstance().getPriceStragety(priceStrategy);
+		
+		return strategy;
 
 	}
 

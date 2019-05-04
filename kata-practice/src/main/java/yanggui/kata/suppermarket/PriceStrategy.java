@@ -4,24 +4,29 @@ import java.math.BigDecimal;
 
 
 public class PriceStrategy {
-	public static String THREE_FOR_DOLLAR ="THREE_FOR_DOLLAR";
+	private String strategyName;
+	private int defaultQuantity;
+	private BigDecimal defaultPrice;
+
+	public PriceStrategy(String strategyName, int pricingQuantity, BigDecimal defaultPrice){
+		this.strategyName = strategyName;
+		this.defaultQuantity=pricingQuantity;
+		this.defaultPrice = defaultPrice;
+		
+	}
 	public String getStrategyName() {
 		return strategyName;
 	}
 	public void setStrategyName(String strategyName) {
+		
 		this.strategyName = strategyName;
 	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+
 	public int getDefaultQuantity() {
-		return quadefaultQntity;
+		return defaultQuantity;
 	}
 	public void setDefaultQuantity(int defaultUnit) {
-		this.quadefaultQntity = defaultUnit;
+		this.defaultQuantity = defaultUnit;
 	}
 	public BigDecimal getDefaultPrice() {
 		return defaultPrice;
@@ -29,9 +34,8 @@ public class PriceStrategy {
 	public void setDefaultPrice(BigDecimal defaultPrice) {
 		this.defaultPrice = defaultPrice;
 	}
-	private String strategyName;
-	private Product product;
-	private int quadefaultQntity;
-	private BigDecimal defaultPrice;
+	public BigDecimal getStategyPrice(Product product) {
+		return getDefaultPrice();
+	}
 
 }
