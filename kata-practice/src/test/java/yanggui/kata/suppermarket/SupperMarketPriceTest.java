@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class SupperMarketPriceTest {
 
 	@Before
@@ -28,21 +27,29 @@ public class SupperMarketPriceTest {
 		product.setSkuid("123456");
 		product.setCurrency(Currency.getInstance(Locale.CHINA));
 		product.setPrice(new BigDecimal("0.4"));
-		assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(product,3,priceStrategy));
+		product.setUnit("piece");
+		Order order = new Order();
+		order.setProduct(product);
+		order.setPriceStrategy(priceStrategy);
+		order.setQuantity(new BigDecimal(3));
+		order.setUnit("piece");
+		assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
 	}
 	@Test
 	public void noDiscountOrder() {
-		String priceStrategy = "";
 		Product product = new Product();
 		product.setSkuid("123456");
 		product.setCurrency(Currency.getInstance(Locale.CHINA));
 		product.setPrice(new BigDecimal("0.4"));
-		assertEquals(new BigDecimal("1.20").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(product,3,priceStrategy));
+		Order order = new Order();
+		order.setProduct(product);
+		order.setQuantity(new BigDecimal(3));
+		assertEquals(new BigDecimal("1.20").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
 	}
 	@Test
 	public void nullProduct() {
-		
-		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(null,3,null));
+		Order order = new Order();
+		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
 	}
 	@Test
 	public void nullSku() {
@@ -52,7 +59,27 @@ public class SupperMarketPriceTest {
 		product.setSkuid("");
 		product.setCurrency(Currency.getInstance(Locale.CHINA));
 		product.setPrice(new BigDecimal("0.4"));
-		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(product,3,priceStrategy));
+		product.setUnit("piece");
+		Order order = new Order();
+		order.setProduct(product);
+		order.setPriceStrategy(priceStrategy);
+		order.setQuantity(new BigDecimal(3));
+		order.setUnit("piece");
+		assertEquals(new BigDecimal("0.00").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
+	}
+	
+	@Test
+	public void calculate4OunceForPriceByPound() {
+		Product product = new Product();
+		product.setSkuid("123456");
+		product.setCurrency(Currency.getInstance(Locale.CHINA));
+		product.setPrice(new BigDecimal("1.99"));
+		product.setUnit("lb");
+		Order order = new Order();
+		order.setProduct(product);
+		order.setQuantity(new BigDecimal(4));
+		order.setUnit("oz");
+		assertEquals(new BigDecimal("0.50").setScale(2, BigDecimal.ROUND_HALF_UP), SupperMarketPrice.calculatePrice(order));
 	}
 
 }

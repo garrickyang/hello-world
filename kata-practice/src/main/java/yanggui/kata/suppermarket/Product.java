@@ -8,7 +8,14 @@ public class Product {
 	private BigDecimal price;
 	private String skuid;
 	private Currency currency;
+	private String unit;
 	
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	public String getProductName() {
 		return productName;
 	}
@@ -33,5 +40,6 @@ public class Product {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
+
 
 }

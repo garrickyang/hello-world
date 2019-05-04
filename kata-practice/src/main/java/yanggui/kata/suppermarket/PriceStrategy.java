@@ -17,11 +17,11 @@ public class PriceStrategy {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public int getDefaultUnit() {
-		return defaultUnit;
+	public int getDefaultQuantity() {
+		return quadefaultQntity;
 	}
-	public void setDefaultUnit(int defaultUnit) {
-		this.defaultUnit = defaultUnit;
+	public void setDefaultQuantity(int defaultUnit) {
+		this.quadefaultQntity = defaultUnit;
 	}
 	public BigDecimal getDefaultPrice() {
 		return defaultPrice;
@@ -31,7 +31,7 @@ public class PriceStrategy {
 	}
 	private String strategyName;
 	private Product product;
-	private int defaultUnit;
+	private int quadefaultQntity;
 	private BigDecimal defaultPrice;
 
 }
