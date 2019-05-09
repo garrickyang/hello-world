@@ -4,6 +4,9 @@ public class FizzBuzzTransfer {
 	
 	public static String fizzBuzzTransfer(int inputNumber) {
 		String result = "";
+		if(inputNumber==0){
+			return result;
+		}
 		if (inputNumber % 3 == 0) {
 			result += "Fizz";
 		}
@@ -14,8 +17,8 @@ public class FizzBuzzTransfer {
 	}
 	
 	public static void main(String[] arg){
-		for(int i=0;i<=100;i++){
-			System.out.print(fizzBuzzTransfer(i));
+		for(int i=1;i<=100;i++){
+			System.out.println(fizzBuzzTransfer(i));
 		}
 	}
 	
