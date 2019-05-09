@@ -1,4 +1,4 @@
-package karatechop;
+package yanggui.kata.karatechop;
 
 import java.util.ArrayList;
 import java.util.List;
