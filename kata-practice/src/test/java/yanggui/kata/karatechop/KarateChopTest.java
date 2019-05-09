@@ -8,8 +8,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import karatechop.KarateChop;
-
 public class KarateChopTest {
 	@Test
 	public void ChopArrayTest() {
