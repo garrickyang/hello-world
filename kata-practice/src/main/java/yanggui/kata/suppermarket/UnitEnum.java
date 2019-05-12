@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public enum UnitEnum {
 	WEIGHT_POUND(CategoryEnum.LENGTH,"lb", new BigDecimal("1")),	
 	WEIGHT_OUNCE(CategoryEnum.LENGTH,"oz", new BigDecimal("16")), //i pound=16 ounce
-	UN_KONWN(null,"unkown",null);
+	UN_KOWN(null,"unkown",null);
 	public CategoryEnum getCategoryEnum() {
 		return categoryEnum;
 	}
@@ -22,7 +22,7 @@ public enum UnitEnum {
 	private String unit;
 	private BigDecimal rate;
 	
-	private UnitEnum(CategoryEnum categoryEnum, String unit, BigDecimal rate) {
+	UnitEnum(CategoryEnum categoryEnum, String unit, BigDecimal rate) {
 		this.categoryEnum = categoryEnum;
 		this.unit = unit;
 		this.rate = rate;

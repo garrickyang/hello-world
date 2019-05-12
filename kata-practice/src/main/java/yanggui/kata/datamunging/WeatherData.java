@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 public class WeatherData implements Comparable<WeatherData> {
 	private String day;
-	private String MaxTemprature;
-	private String MinTemprature;
+	private String MaxTemperature;
+	private String MinTemperature;
 
 	public String getDay() {
 		return day;
@@ -15,20 +15,20 @@ public class WeatherData implements Comparable<WeatherData> {
 		this.day = day;
 	}
 
-	public String getMaxTemprature() {
-		return MaxTemprature;
+	public String getMaxTemperature() {
+		return MaxTemperature;
 	}
 
-	public void setMaxTemprature(String maxTemprature) {
-		MaxTemprature = maxTemprature;
+	public void setMaxTemperature(String maxTemperature) {
+		MaxTemperature = maxTemperature;
 	}
 
-	public String getMinTemprature() {
-		return MinTemprature;
+	public String getMinTemperature() {
+		return MinTemperature;
 	}
 
-	public void setMinTemprature(String mixTemprature) {
-		MinTemprature = mixTemprature;
+	public void setMinTemperature(String mixTemprature) {
+		MinTemperature = mixTemprature;
 	}
 
 	@Override
@@ -41,23 +41,17 @@ public class WeatherData implements Comparable<WeatherData> {
 		int spread1, spread2;
 		spread1 = calculateSpread(this);
 		spread2 = calculateSpread(input);
-		
-		if (spread1 > spread2) {
-			return 1;
-		}
-		if (spread1 < spread2) {
-			return -1;
-		}
-		return 0;
+
+		return Integer.compare(spread1, spread2);
 	}
 
-	private int calculateSpread(WeatherData weatherDataWithSmalllestSpread) {
+	private int calculateSpread(WeatherData weatherDataWithSmallestSpread) {
 		
 		int high = 0;
 		int low = 0;
 		try {
-			high = Integer.parseInt(preProcessData(weatherDataWithSmalllestSpread.getMaxTemprature()));
-			low = Integer.parseInt(preProcessData(weatherDataWithSmalllestSpread.getMinTemprature()));
+			high = Integer.parseInt(preProcessData(weatherDataWithSmallestSpread.getMaxTemperature()));
+			low = Integer.parseInt(preProcessData(weatherDataWithSmallestSpread.getMinTemperature()));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}

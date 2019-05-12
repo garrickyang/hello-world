@@ -7,31 +7,20 @@ public enum WeatherMetaDataEnum {
 		return weatherFiled;
 	}
 
-	public void setWeatherFiled(String weatherFiled) {
-		this.weatherFiled = weatherFiled;
-	}
-
 	public int getStartChar() {
 		return startChar;
 	}
 
-	public void setStartChar(int startChar) {
-		this.startChar = startChar;
-	}
 
 	public int getEndChar() {
 		return endChar;
-	}
-
-	public void setEndChar(int endChar) {
-		this.endChar = endChar;
 	}
 
 	private String weatherFiled;
 	private int startChar;
 	private int endChar;
 
-	private WeatherMetaDataEnum(String weatherFiled, int starChar, int endChar){
+	WeatherMetaDataEnum(String weatherFiled, int starChar, int endChar){
 		this.weatherFiled=weatherFiled;
 		this.startChar=starChar;
 		this.endChar=endChar;

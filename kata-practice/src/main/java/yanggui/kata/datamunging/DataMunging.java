@@ -5,20 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 public class DataMunging {
-	
+
 	public static String findSmallestSpreadWeatherDay(String fileName) {
-		Map<String, WeatherData> map = new HashMap<>();
 		List<String> weatherDataList = FileUtility.readFileToList(fileName);
-		map = DataMunging.formatWeatherData(weatherDataList);
+		Map<String, WeatherData> map = DataMunging.formatWeatherData(weatherDataList);
 		WeatherData smallestObject = findSmallestSpreadWeatherDay(map);
 		return smallestObject.getDay();
 	}
 
 	public static Map<String, WeatherData> formatWeatherData(List<String> weatherDataList) {
-		Map<String, WeatherData> weatheDateMap = new HashMap<>();
+		Map<String, WeatherData> weatherDateMap = new HashMap<>();
 
 		if (weatherDataList == null || weatherDataList.size() == 0) {
-			return weatheDateMap;
+			return weatherDateMap;
 		}
 
 		WeatherData weatherData;
@@ -27,16 +26,16 @@ public class DataMunging {
 			if (weatherData.getDay().isEmpty()) {
 				continue;
 			}
-			weatheDateMap.put(weatherData.getDay(), weatherData);
+			weatherDateMap.put(weatherData.getDay(), weatherData);
 		}
-		return weatheDateMap;
+		return weatherDateMap;
 	}
 
 	public static WeatherData parseOnelineToWeatherData(String onelineData) {
 		WeatherData weatherData = new WeatherData();
 		weatherData.setDay(subSpecificString(onelineData, WeatherMetaDataEnum.DAY));
-		weatherData.setMaxTemprature(subSpecificString(onelineData, WeatherMetaDataEnum.MAX_TEMPRATURE));
-		weatherData.setMinTemprature(subSpecificString(onelineData, WeatherMetaDataEnum.MIN_TEMPRATURE));
+		weatherData.setMaxTemperature(subSpecificString(onelineData, WeatherMetaDataEnum.MAX_TEMPRATURE));
+		weatherData.setMinTemperature(subSpecificString(onelineData, WeatherMetaDataEnum.MIN_TEMPRATURE));
 
 		return weatherData;
 	}
@@ -49,18 +48,19 @@ public class DataMunging {
 	}
 
 	private static WeatherData findSmallestSpreadWeatherDay(Map<String, WeatherData> map) {
-		WeatherData weatherDataWithSmalllestSpread = null, temp;
+		WeatherData weatherDataWithSmallestSpread = null;
+		WeatherData temp;
 		for (Map.Entry<String, WeatherData> entry : map.entrySet()) {
 			temp = entry.getValue();
-			if (weatherDataWithSmalllestSpread == null) {
-				weatherDataWithSmalllestSpread = temp;
+			if (null == weatherDataWithSmallestSpread) {
+				weatherDataWithSmallestSpread = temp;
 				continue;
 			}
-			if (weatherDataWithSmalllestSpread.compareSpread(temp) == 1) {
-				weatherDataWithSmalllestSpread = temp;
+			if (weatherDataWithSmallestSpread.compareSpread(temp) == 1) {
+				weatherDataWithSmallestSpread = temp;
 			}
 		}
 
-		return weatherDataWithSmalllestSpread;
+		return weatherDataWithSmallestSpread;
 	}
 }

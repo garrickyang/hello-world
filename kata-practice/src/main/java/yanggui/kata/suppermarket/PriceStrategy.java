@@ -34,7 +34,7 @@ public class PriceStrategy {
 	public void setDefaultPrice(BigDecimal defaultPrice) {
 		this.defaultPrice = defaultPrice;
 	}
-	public BigDecimal getStategyPrice(Product product) {
+	public BigDecimal getStrategyPrice(Product product) {
 		return getDefaultPrice();
 	}
 

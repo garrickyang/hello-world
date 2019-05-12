@@ -14,17 +14,17 @@ public class KarateChop {
 
 	}
 
-	public static int chopByRecursive(int key, List<Integer> list) {
-
-		if (key == list.get(list.size() - 1) || list.size() == 0) {
-			return list.size() - 1;
-		} else {
-
-			ArrayList<Integer> arraylist = new ArrayList<Integer>(list);
-			arraylist.remove(arraylist.size() - 1);
-			return chopByRecursive(key, arraylist);
-		}
-
-	}
+//	public static int chopByRecursive(int key, List<Integer> list) {
+//
+//		if (key == list.get(list.size() - 1) || list.size() == 0) {
+//			return list.size() - 1;
+//		} else {
+//
+//			ArrayList<Integer> arraylist = new ArrayList<Integer>(list);
+//			arraylist.remove(arraylist.size() - 1);
+//			return chopByRecursive(key, arraylist);
+//		}
+//
+//	}
 
 }

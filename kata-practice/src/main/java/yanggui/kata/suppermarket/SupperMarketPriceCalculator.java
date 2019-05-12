@@ -9,7 +9,7 @@ public class SupperMarketPriceCalculator {
 			unifyUnit(order);
 			return calculatePrice(order.getProduct(), order.getQuantity(), order.getPriceStrategy());	
 		}
-		return new BigDecimal(0).setScale(2);
+		return new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
 		
 		
 	}
@@ -50,7 +50,7 @@ public class SupperMarketPriceCalculator {
 				BigDecimal[] divideAndRemainder = totalProductNumber.divideAndRemainder(new BigDecimal(priceStrategyObject.getDefaultQuantity()));
 				BigDecimal strategyPriceQuantity=divideAndRemainder[0];
 				BigDecimal normalPriceQuantity=divideAndRemainder[1];
-				BigDecimal strategyTotalPrice = priceStrategyObject.getStategyPrice(product).multiply(strategyPriceQuantity);
+				BigDecimal strategyTotalPrice = priceStrategyObject.getStrategyPrice(product).multiply(strategyPriceQuantity);
 				BigDecimal leftProductTotalPrice = calculateNormalPrice(product, normalPriceQuantity);
 				totalPrice = strategyTotalPrice.add(leftProductTotalPrice);
 			}
@@ -60,9 +60,7 @@ public class SupperMarketPriceCalculator {
 
 	private static PriceStrategy getPriceStrategy(String priceStrategy) {
 
-		PriceStrategy strategy = PriceStrategyService.getInstance().getPriceStragety(priceStrategy);
-		
-		return strategy;
+		return PriceStrategyService.getInstance().getPriceStragety(priceStrategy);
 
 	}
 

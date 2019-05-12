@@ -12,13 +12,7 @@ import org.junit.Test;
 
 public class SupperMarketPriceTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public void threeForDollar() {

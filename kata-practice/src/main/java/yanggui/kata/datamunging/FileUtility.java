@@ -19,7 +19,7 @@ public class FileUtility {
 			return null;
 		}
 		String filePath = fileURL.getPath();
-		FileReader fileReader = null;
+		FileReader fileReader;
 		BufferedReader bufferedReader = null;
 		ArrayList<String> fileContentList = new ArrayList<>();
 		try {

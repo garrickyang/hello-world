@@ -21,9 +21,10 @@ public class BuyAndGiveStrategy extends PriceStrategy {
 	}
 
 	@Override
-	public BigDecimal getStategyPrice(Product product) {
-		int calculateQuanty=getDefaultQuantity()-givenQuantity;
-		return product.getPrice().multiply(new BigDecimal(calculateQuanty));
+	public BigDecimal getStrategyPrice(Product product) {
+		int calculateQuantity=getDefaultQuantity()-givenQuantity;
+		return product.getPrice().multiply(new BigDecimal(calculateQuantity));
 	}
+
 
 }

@@ -11,7 +11,7 @@ public class UnitConvertion {
 
 	public static BigDecimal convertUnit(BigDecimal value, UnitEnum originUnit, UnitEnum needConverTo, int scale) {
 
-		if (originUnit == UnitEnum.UN_KONWN || needConverTo == UnitEnum.UN_KONWN) {
+		if (originUnit == UnitEnum.UN_KOWN || needConverTo == UnitEnum.UN_KOWN) {
 			throw new IllegalArgumentException("Un surpport Unit");
 		}
 		if (originUnit.getCategoryEnum() != needConverTo.getCategoryEnum()) {
@@ -33,7 +33,7 @@ public class UnitConvertion {
 				}
 			}
 		}
-		return UnitEnum.UN_KONWN;
+		return UnitEnum.UN_KOWN;
 	}
 
 }
