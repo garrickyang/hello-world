@@ -55,7 +55,7 @@ public class DataMungingTest {
 	public void testFindSmallestSpreadinWeatherData() {
 		String fileName = "weather.dat";
 		String dayString=DataMunging.findSmallestSpreadWeatherDay(fileName);
-		System.out.println("smalliestSrepadDay:"+dayString);
+		System.out.println("smaalliestSrepadDay:"+dayString);
 	}
 
 
