@@ -55,8 +55,15 @@ public class DataMungingTest {
 	public void testFindSmallestSpreadinWeatherData() {
 		String fileName = "weather.dat";
 		String dayString=DataMunging.findSmallestSpreadWeatherDay(fileName);
-		System.out.println("smaalliestSrepadDay:"+dayString);
+		System.out.println("smalliestSrepadDay:"+dayString);
 	}
 
+	@Test
+	public void testFindSmallestDifferenceData() {
+		String fileName = "football.dat";
+		DataMungingFootball dataMungingFootball = new DataMungingFootball();
+		String teamName=dataMungingFootball.findSmallestDifferenceTeam(fileName);
+		System.out.println("smalliestSrepadDay:"+teamName);
 
+	}
 }
