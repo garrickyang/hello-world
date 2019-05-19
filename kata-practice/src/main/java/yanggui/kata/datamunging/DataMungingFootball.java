@@ -27,7 +27,7 @@ public class DataMungingFootball {
 		return footballMatch;
 	}
 
-	private List<FootballMatch> formatFootballData(List<String> footballRecords) {
+	List<FootballMatch> formatFootballData(List<String> footballRecords) {
 		List<FootballMatch> footBallMatchRecordList = new ArrayList<>();
 		if (null == footballRecords || footballRecords.isEmpty()) {
 			return null;
@@ -43,7 +43,7 @@ public class DataMungingFootball {
 		return footBallMatchRecordList;
 	}
 
-	private FootballMatch parserData(String input) {
+	FootballMatch parserData(String input) {
 		
 		String teamName = "";
 		String forScore;
@@ -64,7 +64,7 @@ public class DataMungingFootball {
 		return null;
 	}
 
-	private boolean validateData(String input) {
+	 private boolean validateData(String input) {
 		
 		String number = "^\\d+$";
 		Pattern pattern = Pattern.compile(number);

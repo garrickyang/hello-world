@@ -29,7 +29,8 @@ public class DataMungingTest {
 		Map<String, WeatherData> map;
 		String fileName = "weather.dat";
 		List<String> weatherDataList = FileUtility.readFileToList(fileName);
-		map=DataMunging.formatWeatherData(weatherDataList);
+		DataMungingWeahterData dataMungingWeahterData= new DataMungingWeahterData();
+		map=dataMungingWeahterData.formatWeatherData(weatherDataList);
 		assertEquals(31, map.size());
 	}
 	@Test
@@ -37,14 +38,16 @@ public class DataMungingTest {
 		Map<String, WeatherData> map = new HashMap<>();
 		String fileName = "weatherEmpty.dat";
 		List<String> weatherDataList = FileUtility.readFileToList(fileName);
-		map=DataMunging.formatWeatherData(weatherDataList);
+		DataMungingWeahterData dataMungingWeahterData= new DataMungingWeahterData();
+		map=dataMungingWeahterData.formatWeatherData(weatherDataList);
 		assertEquals(0, map.size());
 	}
 
 	@Test
 	public void testParseOneLine() {
 		String oneLineMetaData = "   1  88    59    74          53.8       0.00 F       280  9.6 270  17  1.6  93 23 1004.5";
-		WeatherData oneLineData = DataMunging.parseOnelineToWeatherData(oneLineMetaData);
+		DataMungingWeahterData dataMungingWeahterData=new DataMungingWeahterData();
+		WeatherData oneLineData = dataMungingWeahterData.parseOnelineToWeatherData(oneLineMetaData);
 		assertEquals("1", oneLineData.getDay());
 		assertEquals("88", oneLineData.getMaxTemperature());
 		assertEquals("59", oneLineData.getMinTemperature());
@@ -54,7 +57,8 @@ public class DataMungingTest {
 	@Test
 	public void testFindSmallestSpreadinWeatherData() {
 		String fileName = "weather.dat";
-		String dayString=DataMunging.findSmallestSpreadWeatherDay(fileName);
+		DataMungingWeahterData dataMungingWeahterData=new DataMungingWeahterData();
+		String dayString=dataMungingWeahterData.findSmallestSpreadWeatherDay(fileName);
 		System.out.println("smalliestSrepadDay:"+dayString);
 	}
 

@@ -4,16 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataMunging {
+public class DataMungingWeahterData {
 
-	public static String findSmallestSpreadWeatherDay(String fileName) {
+	public String findSmallestSpreadWeatherDay(String fileName) {
 		List<String> weatherDataList = FileUtility.readFileToList(fileName);
-		Map<String, WeatherData> map = DataMunging.formatWeatherData(weatherDataList);
+		Map<String, WeatherData> map = formatWeatherData(weatherDataList);
 		WeatherData smallestObject = findSmallestSpreadWeatherDay(map);
 		return smallestObject.getDay();
 	}
 
-	public static Map<String, WeatherData> formatWeatherData(List<String> weatherDataList) {
+	 Map<String, WeatherData> formatWeatherData(List<String> weatherDataList) {
 		Map<String, WeatherData> weatherDateMap = new HashMap<>();
 
 		if (weatherDataList == null || weatherDataList.size() == 0) {
@@ -31,7 +31,7 @@ public class DataMunging {
 		return weatherDateMap;
 	}
 
-	public static WeatherData parseOnelineToWeatherData(String onelineData) {
+	WeatherData parseOnelineToWeatherData(String onelineData) {
 		WeatherData weatherData = new WeatherData();
 		weatherData.setDay(subSpecificString(onelineData, WeatherMetaDataEnum.DAY));
 		weatherData.setMaxTemperature(subSpecificString(onelineData, WeatherMetaDataEnum.MAX_TEMPRATURE));
@@ -47,7 +47,7 @@ public class DataMunging {
 		return onelineData.substring(metaEnum.getStartChar() - 1, metaEnum.getEndChar()).trim();
 	}
 
-	private static WeatherData findSmallestSpreadWeatherDay(Map<String, WeatherData> map) {
+	WeatherData findSmallestSpreadWeatherDay(Map<String, WeatherData> map) {
 		WeatherData weatherDataWithSmallestSpread = null;
 		WeatherData temp;
 		for (Map.Entry<String, WeatherData> entry : map.entrySet()) {
