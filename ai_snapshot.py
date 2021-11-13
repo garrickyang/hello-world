@@ -1,3 +1,11 @@
+k=4
+num_val_samples=len(train_data)//k
+num_epochs=10
+all_mae_histories=[]
+
+model=build_model()
+
+
 for i in range(k):
     print('processing fold #',i)
     val_data=train_data[i*num_val_samples:(i+1)*num_val_samples]
