@@ -26,3 +26,40 @@ for i in range(k):
                       epochs=num_epochs, batch_size=1, verbose=0)
     all_mae_histories=history.history['val_mae']
     all_mae_histories.append(val_mae)
+
+import matplotlib.pyplot as plt
+
+plt.plot(all_mae_histories)
+plt.xlabel('Epochs')
+plt.ylabel('Valication MAE')
+plt.show
+
+#average_mae_history=[np.mean([x[i] for x in all_mae_histories]) 
+#                     for i in range(num_epochs)]
+
+
+import matplotlib.pyplot as plt
+
+plt.plot(all_mae_histories)
+plt.xlabel('Epochs')
+plt.ylabel('Valication MAE')
+plt.show
+
+
+def smooth_curve(points,factor=0.9):
+    smoothed_points=[]
+    for point in points:
+        if smoothed_points:
+            previous=smoothed_points[-1]
+            smoothed_points.append(previous*factor+point*(1-factor))
+        else:
+            smoothed_points.append(point)
+    return smoothed_points
+    
+smooth_mae_history=smooth_curve(all_mae_histories[10:])
+    
+plt.clf()
+plt.plot(range(1,len(smooth_mae_history)+1),smooth_mae_history)
+plt.xlabel('Epochs')
+plt.ylabel('Valication MAE')
+plt.show
